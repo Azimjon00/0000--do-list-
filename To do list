@@ -1,0 +1,87 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class TodoList {
+
+    static class Task {
+        String description;
+        boolean completed;
+
+        Task(String description) {
+            this.description = description;
+            this.completed = false;
+        }
+
+        @Override
+        public String toString() {
+            return (completed ? "[✓] " : "[ ] ") + description;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Task> tasks = new ArrayList<>();
+
+        while (true) {
+            System.out.println("\n=== To-Do List ===");
+            if (tasks.isEmpty()) {
+                System.out.println("The list is empty.");
+            } else {
+                for (int i = 0; i < tasks.size(); i++) {
+                    System.out.println((i + 1) + ". " + tasks.get(i));
+                }
+            }
+
+            System.out.println("\nCommands:");
+            System.out.println("1 - Add a task");
+            System.out.println("2 - Mark a task as completed");
+            System.out.println("3 - Delete a task");
+            System.out.println("0 - Exit");
+
+            System.out.print("Choose a command: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter task description: ");
+                    String desc = scanner.nextLine();
+                    tasks.add(new Task(desc));
+                    System.out.println("Task added!");
+                    break;
+
+                case 2:
+                    System.out.print("Enter the number of the task to mark as completed: ");
+                    int completeIndex = scanner.nextInt() - 1;
+                    scanner.nextLine();
+                    if (completeIndex >= 0 && completeIndex < tasks.size()) {
+                        tasks.get(completeIndex).completed = true;
+                        System.out.println("Task marked as completed!");
+                    } else {
+                        System.out.println("Invalid task number.");
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Enter the number of the task to delete: ");
+                    int removeIndex = scanner.nextInt() - 1;
+                    scanner.nextLine();
+                    if (removeIndex >= 0 && removeIndex < tasks.size()) {
+                        tasks.remove(removeIndex);
+                        System.out.println("Task deleted!");
+                    } else {
+                        System.out.println("Invalid task number.");
+                    }
+                    break;
+
+                case 0:
+                    System.out.println("Exiting the application.");
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Unknown command.");
+            }
+        }
+    }
+}
