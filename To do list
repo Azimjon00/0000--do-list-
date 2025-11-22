@@ -1,87 +1,552 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📝 To-Do List</h1>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="totalTasks">0</div>
+                <div class="stat-label">Всего</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="completedTasks">0</div>
+                <div class="stat-label">Выполнено</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="pendingTasks">0</div>
+                <div class="stat-label">Осталось</div>
+            </div>
+        </div>
 
-public class TodoList {
+        <div class="input-section">
+            <input type="text" id="taskInput" placeholder="Введите новую задачу..." />
+            <select id="prioritySelect">
+                <option value="high">⚠️ Высокий</option>
+                <option value="medium" selected>➡️ Средний</option>
+                <option value="low">⬇️ Низкий</option>
+            </select>
+            <button id="addBtn">Добавить</button>
+        </div>
 
-    static class Task {
-        String description;
-        boolean completed;
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="pending">⏳ Активные</button>
+            <button class="filter-btn" data-filter="completed">✅ Выполненные</button>
+            <button class="filter-btn" data-filter="high">⚠️ Высокий</button>
+            <button class="filter-btn" data-filter="medium">➡️ Средний</button>
+            <button class="filter-btn" data-filter="low">⬇️ Низкий</button>
+            <button class="clear-btn" id="clearBtn">🧹 Очистить</button>
+        </div>
 
-        Task(String description) {
-            this.description = description;
-            this.completed = false;
-        }
+        <ul id="taskList"></ul>
+        <div id="emptyState" class="empty-state">Список пуст. Добавьте первую задачу!</div>
+    </div>
 
-        @Override
-        public String toString() {
-            return (completed ? "[✓] " : "[ ] ") + description;
-        }
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!-- styles.css -->
+<style id="external-styles">
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+    color: #667eea;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+}
+
+.stats {
+    background: #f7f7f7;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.stat-item {
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+select {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    background: white;
+    cursor: pointer;
+}
+
+button {
+    padding: 12px 25px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.1s;
+}
+
+button:hover {
+    background: #5568d3;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 15px;
+    background: #f0f0f0;
+    color: #333;
+    border: 2px solid transparent;
+    font-size: 14px;
+}
+
+.filter-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.clear-btn {
+    background: #e74c3c;
+    margin-left: auto;
+}
+
+.clear-btn:hover {
+    background: #c0392b;
+}
+
+#taskList {
+    list-style: none;
+}
+
+.task-item {
+    background: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 4px solid;
+}
+
+.task-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.task-item.completed {
+    opacity: 0.6;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+}
+
+.task-item.priority-high {
+    border-left-color: #e74c3c;
+}
+
+.task-item.priority-medium {
+    border-left-color: #f39c12;
+}
+
+.task-item.priority-low {
+    border-left-color: #27ae60;
+}
+
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.task-priority {
+    font-size: 20px;
+}
+
+.task-text {
+    flex: 1;
+    font-size: 16px;
+    color: #333;
+}
+
+.task-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.task-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.edit-btn {
+    background: #3498db;
+}
+
+.edit-btn:hover {
+    background: #2980b9;
+}
+
+.delete-btn {
+    background: #e74c3c;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 18px;
+}
+
+@media (max-width: 600px) {
+    .input-section {
+        flex-direction: column;
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
+    .filters {
+        flex-direction: column;
+    }
 
-        while (true) {
-            System.out.println("\n=== To-Do List ===");
-            if (tasks.isEmpty()) {
-                System.out.println("The list is empty.");
-            } else {
-                for (int i = 0; i < tasks.size(); i++) {
-                    System.out.println((i + 1) + ". " + tasks.get(i));
-                }
-            }
-
-            System.out.println("\nCommands:");
-            System.out.println("1 - Add a task");
-            System.out.println("2 - Mark a task as completed");
-            System.out.println("3 - Delete a task");
-            System.out.println("0 - Exit");
-
-            System.out.print("Choose a command: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (choice) {
-                case 1:
-                    System.out.print("Enter task description: ");
-                    String desc = scanner.nextLine();
-                    tasks.add(new Task(desc));
-                    System.out.println("Task added!");
-                    break;
-
-                case 2:
-                    System.out.print("Enter the number of the task to mark as completed: ");
-                    int completeIndex = scanner.nextInt() - 1;
-                    scanner.nextLine();
-                    if (completeIndex >= 0 && completeIndex < tasks.size()) {
-                        tasks.get(completeIndex).completed = true;
-                        System.out.println("Task marked as completed!");
-                    } else {
-                        System.out.println("Invalid task number.");
-                    }
-                    break;
-
-                case 3:
-                    System.out.print("Enter the number of the task to delete: ");
-                    int removeIndex = scanner.nextInt() - 1;
-                    scanner.nextLine();
-                    if (removeIndex >= 0 && removeIndex < tasks.size()) {
-                        tasks.remove(removeIndex);
-                        System.out.println("Task deleted!");
-                    } else {
-                        System.out.println("Invalid task number.");
-                    }
-                    break;
-
-                case 0:
-                    System.out.println("Exiting the application.");
-                    scanner.close();
-                    return;
-
-                default:
-                    System.out.println("Unknown command.");
-            }
-        }
+    .clear-btn {
+        margin-left: 0;
     }
 }
+</style>
+
+<!-- script.js -->
+<script>
+// Класс Task - представляет одну задачу
+class Task {
+    constructor(text, priority) {
+        this.id = Date.now();
+        this.text = text;
+        this.priority = priority;
+        this.completed = false;
+    }
+
+    toggle() {
+        this.completed = !this.completed;
+    }
+
+    update(text, priority) {
+        this.text = text;
+        this.priority = priority;
+    }
+}
+
+// Класс TaskManager - управляет списком задач
+class TaskManager {
+    constructor() {
+        this.tasks = [];
+    }
+
+    addTask(text, priority) {
+        const task = new Task(text, priority);
+        this.tasks.push(task);
+        return task;
+    }
+
+    getTaskById(id) {
+        return this.tasks.find(task => task.id === id);
+    }
+
+    deleteTask(id) {
+        this.tasks = this.tasks.filter(task => task.id !== id);
+    }
+
+    toggleTask(id) {
+        const task = this.getTaskById(id);
+        if (task) {
+            task.toggle();
+        }
+    }
+
+    updateTask(id, text, priority) {
+        const task = this.getTaskById(id);
+        if (task) {
+            task.update(text, priority);
+        }
+    }
+
+    clearCompleted() {
+        this.tasks = this.tasks.filter(task => !task.completed);
+    }
+
+    getFilteredTasks(filter) {
+        switch(filter) {
+            case 'completed':
+                return this.tasks.filter(task => task.completed);
+            case 'pending':
+                return this.tasks.filter(task => !task.completed);
+            case 'high':
+            case 'medium':
+            case 'low':
+                return this.tasks.filter(task => task.priority === filter);
+            default:
+                return this.tasks;
+        }
+    }
+
+    getStats() {
+        const total = this.tasks.length;
+        const completed = this.tasks.filter(task => task.completed).length;
+        const pending = total - completed;
+        return { total, completed, pending };
+    }
+}
+
+// Класс UIManager - управляет интерфейсом
+class UIManager {
+    constructor(taskManager) {
+        this.taskManager = taskManager;
+        this.currentFilter = 'all';
+        this.editingId = null;
+        this.priorityIcons = {
+            high: '⚠️',
+            medium: '➡️',
+            low: '⬇️'
+        };
+        this.initElements();
+        this.attachEventListeners();
+    }
+
+    initElements() {
+        this.taskInput = document.getElementById('taskInput');
+        this.prioritySelect = document.getElementById('prioritySelect');
+        this.addBtn = document.getElementById('addBtn');
+        this.taskList = document.getElementById('taskList');
+        this.emptyState = document.getElementById('emptyState');
+        this.totalTasks = document.getElementById('totalTasks');
+        this.completedTasks = document.getElementById('completedTasks');
+        this.pendingTasks = document.getElementById('pendingTasks');
+        this.clearBtn = document.getElementById('clearBtn');
+        this.filterBtns = document.querySelectorAll('.filter-btn');
+    }
+
+    attachEventListeners() {
+        this.addBtn.addEventListener('click', () => this.handleAddTask());
+        this.taskInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.handleAddTask();
+        });
+        this.clearBtn.addEventListener('click', () => this.handleClearCompleted());
+        this.filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => this.handleFilterChange(e));
+        });
+    }
+
+    handleAddTask() {
+        const text = this.taskInput.value.trim();
+        const priority = this.prioritySelect.value;
+
+        if (text === '') {
+            alert('Введите текст задачи!');
+            return;
+        }
+
+        if (this.editingId !== null) {
+            this.taskManager.updateTask(this.editingId, text, priority);
+            this.editingId = null;
+            this.addBtn.textContent = 'Добавить';
+        } else {
+            this.taskManager.addTask(text, priority);
+        }
+
+        this.taskInput.value = '';
+        this.render();
+    }
+
+    handleToggleTask(id) {
+        this.taskManager.toggleTask(id);
+        this.render();
+    }
+
+    handleDeleteTask(id) {
+        this.taskManager.deleteTask(id);
+        this.render();
+    }
+
+    handleEditTask(id) {
+        const task = this.taskManager.getTaskById(id);
+        if (task) {
+            this.taskInput.value = task.text;
+            this.prioritySelect.value = task.priority;
+            this.addBtn.textContent = 'Сохранить';
+            this.editingId = id;
+        }
+    }
+
+    handleFilterChange(e) {
+        this.currentFilter = e.target.dataset.filter;
+        this.filterBtns.forEach(btn => btn.classList.remove('active'));
+        e.target.classList.add('active');
+        this.render();
+    }
+
+    handleClearCompleted() {
+        this.taskManager.clearCompleted();
+        this.render();
+    }
+
+    renderTasks() {
+        const filteredTasks = this.taskManager.getFilteredTasks(this.currentFilter);
+
+        if (filteredTasks.length === 0) {
+            this.taskList.style.display = 'none';
+            this.emptyState.style.display = 'block';
+        } else {
+            this.taskList.style.display = 'block';
+            this.emptyState.style.display = 'none';
+        }
+
+        this.taskList.innerHTML = filteredTasks.map(task => `
+            <li class="task-item priority-${task.priority} ${task.completed ? 'completed' : ''}">
+                <input type="checkbox" class="task-checkbox" 
+                       ${task.completed ? 'checked' : ''} 
+                       data-id="${task.id}"
+                       data-action="toggle">
+                <span class="task-priority">${this.priorityIcons[task.priority]}</span>
+                <span class="task-text">${task.text}</span>
+                <div class="task-actions">
+                    <button class="task-btn edit-btn" data-id="${task.id}" data-action="edit">✏️</button>
+                    <button class="task-btn delete-btn" data-id="${task.id}" data-action="delete">🗑️</button>
+                </div>
+            </li>
+        `).join('');
+
+        // Добавляем обработчики событий для динамически созданных элементов
+        this.taskList.querySelectorAll('[data-action]').forEach(element => {
+            element.addEventListener('click', (e) => {
+                const id = parseInt(e.target.dataset.id);
+                const action = e.target.dataset.action;
+
+                switch(action) {
+                    case 'toggle':
+                        this.handleToggleTask(id);
+                        break;
+                    case 'edit':
+                        this.handleEditTask(id);
+                        break;
+                    case 'delete':
+                        this.handleDeleteTask(id);
+                        break;
+                }
+            });
+        });
+    }
+
+    renderStats() {
+        const stats = this.taskManager.getStats();
+        this.totalTasks.textContent = stats.total;
+        this.completedTasks.textContent = stats.completed;
+        this.pendingTasks.textContent = stats.pending;
+    }
+
+    render() {
+        this.renderTasks();
+        this.renderStats();
+    }
+}
+
+// Класс App - главный класс приложения
+class App {
+    constructor() {
+        this.taskManager = new TaskManager();
+        this.uiManager = new UIManager(this.taskManager);
+        this.init();
+    }
+
+    init() {
+        this.uiManager.render();
+    }
+}
+
+// Запуск приложения
+const app = new App();
+</script>
+</body>
+</html>
