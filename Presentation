@@ -107,14 +107,8 @@
         }
         
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .title-content h1 {
@@ -156,9 +150,7 @@
             align-items: center;
         }
         
-        .slide-2 {
-            justify-content: center;
-        }
+        .slide-2 { justify-content: center; }
         
         .slide-content {
             max-width: 950px;
@@ -167,14 +159,8 @@
         }
         
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .slide-2 h2, .slide-3 h2, .slide-4 h2, .slide-5 h2, .slide-6 h2 {
@@ -220,16 +206,8 @@
             transform: translateX(10px);
         }
         
-        .feature-item span {
-            font-size: 28px;
-            margin-right: 12px;
-        }
-        
-        .feature-item p {
-            margin: 0;
-            font-size: 16px;
-            color: #c0c0c0;
-        }
+        .feature-item span { font-size: 28px; margin-right: 12px; }
+        .feature-item p { margin: 0; font-size: 16px; color: #c0c0c0; }
         
         .code-block {
             background: #0f0f1e;
@@ -238,22 +216,15 @@
             padding: 20px;
             overflow-x: auto;
             margin: 12px 0;
-            font-family: 'Fira Code', 'Courier New', monospace;
+            font-family: 'Courier New', monospace;
             font-size: 13px;
             line-height: 1.7;
             color: #00ff88;
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
             box-shadow: 0 0 20px rgba(102, 126, 234, 0.1);
         }
         
-        .code-block code {
-            display: block;
-            white-space: pre;
-        }
-        
-        .code-comment {
-            color: #888888;
-        }
+        .code-block code { display: block; white-space: pre; }
+        .code-comment { color: #888888; }
         
         .code-explanation {
             background: rgba(102, 126, 234, 0.12);
@@ -266,17 +237,8 @@
             line-height: 1.6;
         }
         
-        .code-explanation strong {
-            color: #667eea;
-        }
-        
-        .code-subtitle {
-            color: #b0b0b0;
-            margin-top: 12px;
-            margin-bottom: 10px;
-            font-size: 15px;
-            font-weight: 500;
-        }
+        .code-explanation strong { color: #667eea; }
+        .code-subtitle { color: #b0b0b0; margin: 12px 0 10px 0; font-size: 15px; font-weight: 500; }
         
         .slide-7 {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
@@ -286,19 +248,8 @@
             text-align: center;
         }
         
-        .slide-7 h2 {
-            font-size: 64px;
-            color: white;
-            margin-bottom: 30px;
-            font-weight: 900;
-        }
-        
-        .slide-7 p {
-            font-size: 22px;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
+        .slide-7 h2 { font-size: 64px; color: white; margin-bottom: 30px; font-weight: 900; }
+        .slide-7 p { font-size: 22px; color: rgba(255, 255, 255, 0.95); margin-bottom: 15px; font-weight: 500; }
         
         .tech-box {
             background: rgba(255, 255, 255, 0.15);
@@ -309,18 +260,8 @@
             margin-top: 40px;
         }
         
-        .tech-box p {
-            font-size: 17px;
-            margin: 12px 0;
-            color: rgba(255, 255, 255, 0.95);
-        }
-        
-        .thank-you {
-            font-size: 36px;
-            margin-top: 40px;
-            font-weight: 700;
-            color: white;
-        }
+        .tech-box p { font-size: 17px; margin: 12px 0; color: rgba(255, 255, 255, 0.95); }
+        .thank-you { font-size: 36px; margin-top: 40px; font-weight: 700; color: white; }
         
         .controls {
             position: fixed;
@@ -349,19 +290,10 @@
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
         
-        .nav-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
-        }
+        .nav-btn:hover { transform: scale(1.1); box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6); }
+        .nav-btn:active { transform: scale(0.95); }
         
-        .nav-btn:active {
-            transform: scale(0.95);
-        }
-        
-        .dots {
-            display: flex;
-            gap: 12px;
-        }
+        .dots { display: flex; gap: 12px; }
         
         .dot {
             width: 12px;
@@ -370,35 +302,19 @@
             background: rgba(255, 255, 255, 0.3);
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
         }
         
-        .dot.active {
-            background: #667eea;
-            width: 30px;
-            border-radius: 6px;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
-        }
+        .dot.active { background: #667eea; width: 30px; border-radius: 6px; box-shadow: 0 0 20px rgba(102, 126, 234, 0.6); }
+        .dot:hover { background: rgba(102, 126, 234, 0.6); }
         
-        .dot:hover {
-            background: rgba(102, 126, 234, 0.6);
-        }
-        
-        .slide-counter {
-            color: #667eea;
-            font-weight: 600;
-            font-size: 16px;
-            min-width: 40px;
-            text-align: center;
-        }
+        .slide-counter { color: #667eea; font-weight: 600; font-size: 16px; min-width: 40px; text-align: center; }
     </style>
 </head>
 <body>
     <div class="presentation-wrapper">
-        <!-- Slide 1 -->
         <div class="slide slide-1 active">
             <div class="logo-container">
-                <img src="https://alatoo.edu.kg/wp-content/uploads/2023/10/cropped-ALATOO-LOGO-2.png" alt="Alatoo Logo">
+                <img src="https://alatoo.edu.kg/wp-content/uploads/2023/10/cropped-ALATOO-LOGO-2.png" alt="Alatoo">
             </div>
             <div class="title-content">
                 <h1>💱 Currency Converter</h1>
@@ -406,38 +322,24 @@
                 <div class="author-box">
                     <p>👨‍💻 <strong>Developed by:</strong> Allonbaev Azimjon</p>
                     <p>📚 <strong>Group:</strong> SCA-24B</p>
-                    <p>👨‍🏫 <strong>Teacher:</strong> Kubanychek Agai</p>
+                    <p>👨‍🏫 <strong>Teacher:</strong> Kubanych Agai (Кубаныч Агай)</p>
                 </div>
             </div>
         </div>
         
-        <!-- Slide 2 -->
         <div class="slide slide-2">
             <div class="slide-content">
                 <h2>📋 Обзор проекта</h2>
                 <p>Современное веб-приложение для конвертации валют с интуитивным интерфейсом и актуальными курсами обмена</p>
                 <div class="features-grid">
-                    <div class="feature-item">
-                        <span>💱</span>
-                        <p><strong>Конвертация</strong> между валютами</p>
-                    </div>
-                    <div class="feature-item">
-                        <span>⚡</span>
-                        <p><strong>Real-time</strong> обновление курсов</p>
-                    </div>
-                    <div class="feature-item">
-                        <span>🔄</span>
-                        <p><strong>Swap</strong> функция обмена</p>
-                    </div>
-                    <div class="feature-item">
-                        <span>🌍</span>
-                        <p><strong>8+ валют</strong> на выбор</p>
-                    </div>
+                    <div class="feature-item"><span>💱</span><p><strong>Конвертация</strong> между валютами</p></div>
+                    <div class="feature-item"><span>⚡</span><p><strong>Real-time</strong> обновление курсов</p></div>
+                    <div class="feature-item"><span>🔄</span><p><strong>Swap</strong> функция обмена</p></div>
+                    <div class="feature-item"><span>🌍</span><p><strong>8+ валют</strong> на выбор</p></div>
                 </div>
             </div>
         </div>
         
-        <!-- Slide 3 -->
         <div class="slide slide-3">
             <div class="slide-content">
                 <h2>🏗️ HTML структура</h2>
@@ -449,120 +351,92 @@
     &lt;select class="currency-code"&gt;
       &lt;option&gt;USD&lt;/option&gt;
       &lt;option&gt;SGD&lt;/option&gt;
-      &lt;option&gt;EUR&lt;/option&gt;
     &lt;/select&gt;
   &lt;/div&gt;
-  &lt;input type="number" 
-         class="amount-input" 
-         placeholder="0"&gt;
+  &lt;input type="number" placeholder="0"&gt;
 &lt;/div&gt;
 
 <span class="code-comment">// Кнопка для обмена валют</span>
 &lt;button class="swap-btn"&gt;⇅&lt;/button&gt;</code></div>
-                <div class="code-explanation">
-                    <strong>📌 Ключевые моменты:</strong> HTML использует семантичные элементы с четкими именами классов. Элемент select позволяет выбирать из поддерживаемых валют, а поле input принимает сумму для конвертации.
-                </div>
+                <div class="code-explanation"><strong>📌 Ключевые моменты:</strong> HTML использует семантичные элементы. Элемент select выбирает валюты, input принимает сумму для конвертации.</div>
             </div>
         </div>
         
-        <!-- Slide 4 -->
         <div class="slide slide-4">
             <div class="slide-content">
                 <h2>🎨 CSS стили</h2>
-                <p class="code-subtitle">Современный дизайн с анимациями и градиентами</p>
-                <div class="code-block"><code><span class="code-comment">/* Главный контейнер с тенью */</span>
+                <p class="code-subtitle">Современный дизайн с анимациями</p>
+                <div class="code-block"><code><span class="code-comment">/* Главный контейнер */</span>
 .container {
   width: 100%;
-  max-width: 375px;
   background: #ffffff;
   border-radius: 24px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
-<span class="code-comment">/* Кнопка свапа с эффектом наведения */</span>
+<span class="code-comment">/* Кнопка свапа */</span>
 .swap-btn {
   width: 48px;
   height: 48px;
   background: #0066ff;
   border-radius: 50%;
-  border: none;
-  cursor: pointer;
   transition: transform 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
 }
 
 .swap-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0, 102, 255, 0.4);
 }</code></div>
-                <div class="code-explanation">
-                    <strong>✨ Особенности дизайна:</strong> Плавные переходы делают интерфейс отзывчивым. Кнопка свапа увеличивается при наведении, обеспечивая визуальную обратную связь. Border-radius создает скругленные углы для современного вида.
-                </div>
+                <div class="code-explanation"><strong>✨ Особенности:</strong> Плавные переходы делают интерфейс отзывчивым. Кнопка увеличивается при наведении, создавая визуальную обратную связь.</div>
             </div>
         </div>
         
-        <!-- Slide 5 -->
         <div class="slide slide-5">
             <div class="slide-content">
                 <h2>⚙️ JavaScript функциональность</h2>
-                <p class="code-subtitle">Обработка событий и интерактивные функции</p>
-                <div class="code-block"><code><span class="code-comment">// Обмен валют по клику на кнопку</span>
+                <p class="code-subtitle">Обработка событий и логика приложения</p>
+                <div class="code-block"><code><span class="code-comment">// Обмен валют</span>
 $('swap-btn').addEventListener('click', () => {
   [fromCurrency, toCurrency] = 
     [toCurrency, fromCurrency];
-  $('from-select').value = fromCurrency;
-  $('to-select').value = toCurrency;
   updateFlags();
   calculate();
 });
 
-<span class="code-comment">// Автоматический расчет при вводе</span>
+<span class="code-comment">// Автоматический расчет</span>
 $('amount-input')
   .addEventListener('input', calculate);
 
-<span class="code-comment">// Получение актуальных курсов</span>
+<span class="code-comment">// Изменение валюты</span>
 $('to-select').addEventListener('change', e => {
   toCurrency = e.target.value;
-  updateFlags();
   calculate();
 });</code></div>
-                <div class="code-explanation">
-                    <strong>🎯 Объяснение логики:</strong> Функция обмена использует деструктуризацию массива для эффективного обмена значений. Event listeners срабатывают для расчета моментально при вводе пользователя. Функция updateFlags() обновляет иконки флагов валют.
-                </div>
+                <div class="code-explanation"><strong>🎯 Логика:</strong> Деструктуризация массива обменивает значения валют. Event listeners срабатывают при вводе пользователя для моментального расчета.</div>
             </div>
         </div>
         
-        <!-- Slide 6 -->
         <div class="slide slide-6">
             <div class="slide-content">
                 <h2>🌟 Ключевые возможности</h2>
-                <p class="code-subtitle">Функциональные особенности приложения</p>
-                <div class="code-block"><code><span class="code-comment">// Получение и кэширование курсов валют</span>
+                <p class="code-subtitle">API интеграция и обработка данных</p>
+                <div class="code-block"><code><span class="code-comment">// Получение курсов</span>
 async function fetchRates() {
-  try {
-    const response = await fetch(API_URL);
-    const data = await response.json();
-    rates = data.rates;
-    updateDisplay();
-  } catch (error) {
-    console.error('Error fetching rates:', error);
-  }
+  const response = await fetch(API_URL);
+  const data = await response.json();
+  rates = data.rates;
 }
 
-<span class="code-comment">// Основной расчет конвертации</span>
+<span class="code-comment">// Основной расчет</span>
 function calculate() {
   const amount = $('amount-input').value;
   const rate = rates[fromCurrency][toCurrency];
   const result = amount * rate;
-  $('result-text').textContent = result.toFixed(2);
+  $('result').textContent = result.toFixed(2);
 }</code></div>
-                <div class="code-explanation">
-                    <strong>💡 Функциональность:</strong> fetchRates() получает последние курсы с API и кэширует их для быстрого доступа. Функция calculate() выполняет математическую конвертацию и обновляет результат в реальном времени. Используется async/await для асинхронных операций.
-                </div>
+                <div class="code-explanation"><strong>💡 Функциональность:</strong> fetchRates() получает актуальные курсы с API. Функция calculate() выполняет конвертацию в реальном времени с использованием async/await.</div>
             </div>
         </div>
         
-        <!-- Slide 7 -->
         <div class="slide slide-7">
             <h2>✅ Заключение</h2>
             <p>Успешно разработано полнофункциональное веб-приложение</p>
@@ -570,8 +444,8 @@ function calculate() {
             <div class="tech-box">
                 <p>🔧 <strong>Технологии:</strong> HTML5 • CSS3 • JavaScript ES6+</p>
                 <p>💻 <strong>Платформа:</strong> Web (Responsive Design)</p>
-                <p>⚡ <strong>Функциональность:</strong> Real-time Currency Conversion с API интеграцией</p>
-                <p>🎨 <strong>Дизайн:</strong> Современный и пользовательский интерфейс</p>
+                <p>⚡ <strong>Функциональность:</strong> Real-time Currency Conversion API</p>
+                <p>🎨 <strong>Дизайн:</strong> Современный пользовательский интерфейс</p>
             </div>
             <div class="thank-you">Спасибо за внимание! 🙏</div>
         </div>
@@ -597,15 +471,10 @@ function calculate() {
         }
         
         function showSlide(n) {
-            const slides = document.querySelectorAll('.slide');
-            
-            slides.forEach((slide, index) => {
+            document.querySelectorAll('.slide').forEach((slide, index) => {
                 slide.classList.remove('active', 'prev');
-                if (index + 1 === n) {
-                    slide.classList.add('active');
-                } else if (index + 1 < n) {
-                    slide.classList.add('prev');
-                }
+                if (index + 1 === n) slide.classList.add('active');
+                else if (index + 1 < n) slide.classList.add('prev');
             });
             
             document.querySelectorAll('.dot').forEach((dot, index) => {
